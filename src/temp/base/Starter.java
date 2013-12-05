@@ -21,6 +21,11 @@ import temp.base.config.BaseConfiguration;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.core.util.StatusPrinter;
+
 /**
  * Provides the main-method to load the basic configuration and initialize the ModuleLinker
  */
@@ -30,6 +35,12 @@ public final class Starter {
 		//Set Thread-Information in ModuleLinker for Interrupt
 		//ModuleLinker.setMainThread(Thread.currentThread());
 
+
+		Logger logger = LoggerFactory.getLogger(Starter.class);
+		logger.debug("Programm is going to start.");
+		LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
+		StatusPrinter.print(lc);
+		
 		//Load Core-Config
 		BaseConfiguration baseConfiguration = null;
 		try {
